@@ -1,3 +1,4 @@
+import { Card } from "@/components/Card";
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText } from "./../components/ThemedText"; // Adjust the path as necessary
@@ -10,7 +11,10 @@ export default function Index() {
   return (
     <SafeAreaView
       style ={[styles.container, {backgroundColor: colors.tint}]}>
-      <ThemedText variant="headline" color="grayWhite">Pokédex</ThemedText>
+        <Card>
+          <ThemedText variant="headline" color="grayDark">Pokédex</ThemedText>
+        </Card>
+      
     </SafeAreaView>
   );
 }
