@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 74,
+    borderWidth: 1,
+    borderColor: withAlpha('#FFFFFF', 0.12),
   },
   icon: {
     marginBottom: 6,

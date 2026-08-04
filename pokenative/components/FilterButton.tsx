@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import { DexColors } from '../constants/pokedex';
+import { withAlpha } from '../lib/color';
 
 type Props = {
   label: string;
@@ -30,6 +31,8 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingVertical: 10,
     paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: withAlpha('#FFFFFF', 0.1),
   },
   pressed: {
     opacity: 0.7,

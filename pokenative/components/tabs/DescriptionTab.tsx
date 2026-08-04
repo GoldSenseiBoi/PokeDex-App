@@ -30,7 +30,9 @@ export function DescriptionTab({ detail, game, accentColor }: Props) {
     <View>
       <Text style={styles.sectionTitle}>Pokémon {gameTheme.nameFr} description</Text>
       <View style={[styles.descriptionCard, { backgroundColor: gameTheme.color }]}>
-        {detail.sprite ? <Image source={{ uri: detail.sprite }} style={styles.descriptionSprite} resizeMode="contain" /> : null}
+        <View style={styles.descriptionSpriteFrame}>
+          {detail.sprite ? <Image source={{ uri: detail.sprite }} style={styles.descriptionSprite} resizeMode="contain" /> : null}
+        </View>
         <Text style={styles.descriptionText}>{description}</Text>
       </View>
 
@@ -91,13 +93,25 @@ const styles = StyleSheet.create({
   descriptionCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 12,
     borderRadius: 14,
     padding: 12,
+    borderWidth: 1,
+    borderColor: withAlpha('#FFFFFF', 0.25),
+  },
+  descriptionSpriteFrame: {
+    width: 60,
+    height: 60,
+    borderRadius: 12,
+    backgroundColor: withAlpha('#FFFFFF', 0.16),
+    borderWidth: 1,
+    borderColor: withAlpha('#FFFFFF', 0.25),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   descriptionSprite: {
-    width: 56,
-    height: 56,
+    width: 46,
+    height: 46,
   },
   descriptionText: {
     flex: 1,
@@ -113,6 +127,8 @@ const styles = StyleSheet.create({
   panel: {
     borderRadius: 16,
     padding: 14,
+    borderWidth: 1,
+    borderColor: withAlpha('#FFFFFF', 0.12),
   },
   statsList: {
     marginTop: 12,
@@ -124,6 +140,8 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     paddingVertical: 14,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: withAlpha('#FFFFFF', 0.14),
   },
   talentText: {
     color: '#FFFFFF',

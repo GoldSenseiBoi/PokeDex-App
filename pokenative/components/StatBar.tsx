@@ -1,5 +1,6 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View } from 'react-native';
-import { withAlpha } from '../lib/color';
+import { shade, withAlpha } from '../lib/color';
 
 type Props = {
   label: string;
@@ -14,7 +15,12 @@ export function StatBar({ label, value, max = 200, barColor = '#D9B44A' }: Props
     <View style={styles.row}>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.track}>
-        <View style={[styles.fill, { width: `${percent * 100}%`, backgroundColor: barColor }]} />
+        <LinearGradient
+          colors={[shade(barColor, 0.25), barColor]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={[styles.fill, { width: `${percent * 100}%` }]}
+        />
       </View>
       <Text style={styles.value}>{value}</Text>
     </View>

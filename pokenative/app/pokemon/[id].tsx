@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -54,11 +55,12 @@ export default function PokemonDetailScreen() {
 
   const primaryType = detail.types[0];
   const accentColor = Colors.type[primaryType] ?? '#555555';
-  const background = shade(accentColor, -0.55);
+  const gradientTop = shade(accentColor, -0.18);
+  const gradientBottom = shade(accentColor, -0.62);
   const gameTheme = GAME_THEMES[game];
 
   return (
-    <View style={[styles.screen, { backgroundColor: background }]}>
+    <LinearGradient colors={[gradientTop, gradientBottom]} style={styles.screen}>
       <SafeAreaView style={styles.headerSafe} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} hitSlop={10} style={styles.backButton}>
@@ -72,11 +74,13 @@ export default function PokemonDetailScreen() {
 
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.heroRow}>
-            {detail.sprite ? (
-              <Image source={{ uri: detail.sprite }} style={styles.heroImage} resizeMode="contain" />
-            ) : (
-              <View style={styles.heroImage} />
-            )}
+            <View style={styles.heroArtFrame}>
+              {detail.sprite ? (
+                <Image source={{ uri: detail.sprite }} style={styles.heroImage} resizeMode="contain" />
+              ) : (
+                <View style={styles.heroImage} />
+              )}
+            </View>
             <View style={styles.badgeColumn}>
               {detail.types.map((t) => (
                 <TypeBadge key={t} type={t} />
@@ -106,7 +110,7 @@ export default function PokemonDetailScreen() {
       <SafeAreaView edges={['bottom', 'left', 'right']} style={styles.tabBarSafe}>
         <DetailTabBar active={activeTab} onChange={setActiveTab} />
       </SafeAreaView>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -160,11 +164,24 @@ const styles = StyleSheet.create({
     marginTop: 14,
     gap: 16,
   },
-  heroImage: {
+  heroArtFrame: {
     width: 140,
     height: 140,
-    backgroundColor: withAlpha('#000000', 0.15),
-    borderRadius: 20,
+    borderRadius: 22,
+    backgroundColor: withAlpha('#FFFFFF', 0.14),
+    borderWidth: 1.5,
+    borderColor: withAlpha('#FFFFFF', 0.3),
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  heroImage: {
+    width: '82%',
+    height: '82%',
   },
   badgeColumn: {
     flex: 1,
@@ -177,6 +194,8 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     alignSelf: 'stretch',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: withAlpha('#FFFFFF', 0.35),
   },
   gamePillText: {
     color: '#FFFFFF',
