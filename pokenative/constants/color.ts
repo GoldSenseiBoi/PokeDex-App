@@ -28,6 +28,7 @@ export const Colors = {
       normal: "#AAA67F",
       grass: "#74CB48",
       ground: "#DEC16B",
+      ice: "#9AD6DF",
       poison: "#A43E9E",
       psychic: "#FB5584",
       rock: "#B69E31",

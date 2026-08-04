@@ -1,10 +1,11 @@
-import type { viewProps } from 'react-native';
+import type { ViewProps } from 'react-native';
 import { View } from 'react-native';
+import { Shadow } from '../constants/Shadow';
 
-type Props = viewProps 
+type Props = ViewProps
 
 export function Card ({style, ...rest}: Props) {
-    return <View style={[style, styles]} {...rest} />;
+    return <View style={[styles, style]} {...rest} />;
 
 }
 
@@ -13,9 +14,5 @@ const styles = {
     borderRadius: 8,
     padding: 16,
     margin: 16,
-    shadowColor: 'black',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 4,
+    ...Shadow,
 };
